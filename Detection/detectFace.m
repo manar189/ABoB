@@ -1,7 +1,9 @@
-function [outputArg1,outputArg2] = detectFace(inputArg1,inputArg2)
-%detactFace Summary of this function goes here
+function outIm = detectFace(im)
+%DETECTFACE Takes an image of a face and returns it normalized.
 %   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+
+[lEye, rEye] = detectEyes(im);
+outIm = 123;
+
 end
 
