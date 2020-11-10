@@ -8,7 +8,7 @@ colorMap = colorEyeMap(im);
 houghMap = houghEyeMap(im);
 % figure, imshow(houghMap);
 
-eyeMap = colorMap + houghMap;
+eyeMap = colorMap.*houghMap + (colorMap+houghMap)/2;
 figure, imshow(eyeMap);
 lEye = 123;
 rEye = 321;

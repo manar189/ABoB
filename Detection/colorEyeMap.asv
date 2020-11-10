@@ -71,7 +71,7 @@ for i = 1:size(centroids,1)
     map(centroids(i,2), centroids(i,1)) = 1/i;
 end
 
-SE = strel('disk', 13);
+SE = strel('disk', 20);
 map = imdilate(map, SE);
 
 figure, imshow(im);  
