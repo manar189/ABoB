@@ -8,8 +8,14 @@ function faceId = tnm034(im)
 %   i.e. ‘1’, ‘2’,…,‘16’ for the persons belonging to ‘db1’
 %   and ‘0’ for all other faces.
 
+% Adds paths to subfolders
+addpath(genpath(fileparts('Detection/')));
+addpath(genpath(fileparts('Recognition/')));
+addpath(genpath(fileparts('Pictures/')));
 
+% Detection
 normIm = detectFace(im);
+% Classification
 faceId = classifyFace(normIm);
 
 end

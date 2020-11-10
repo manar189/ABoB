@@ -1,9 +1,10 @@
-function outIm = detectFace(im)
+function normIm = detectFace(im)
 %DETECTFACE Takes an image of a face and returns it normalized.
 %   Detailed explanation goes here
 
+% detectFaceEdge(im);
 [lEye, rEye] = detectEyes(im);
-outIm = 123;
+normIm = 123;
 
 end
 
