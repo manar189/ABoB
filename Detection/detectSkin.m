@@ -3,7 +3,7 @@ function [imSkin, skinMask] = detectSkin(im, P)
 %Returns both the probability image and a binarized mask image.
 
 imDims = size(im, [1 2]);
-imYCBCR = rgb2ycbcr(im);
+imYCBCR = im2double(rgb2ycbcr(im));
 imSkin = zeros(imDims);
 
 % Apply the model with this ugly for loop, eww

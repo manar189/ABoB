@@ -5,11 +5,22 @@ function normIm = detectFace(im)
 load skinTones.mat P % P is pre-fit and cached with the skin tone samples
 imCorr = lightCorrection(im, 0.02);
 [imSkin, skinMask] = detectSkin(imCorr, P);
+% figure, imshow(imSkin);
+% figure, imshow(skinMask);
 
-imshow(im);
+% This should be done in detectSkin-function
+SE = strel('disk', 100);
+skinMask = imopen(skinMask, SE);
+imMask = im2double(im).*skinMask;
+
+% Replace for detectMouth-function
+figure, imshow(im);
 mouthPos(:) = ginput(1);
-[lEye, rEye] = detectEyes(im, mouthPos);
 
+% Detects eyes and returns their positions
+[lEye, rEye] = detectEyes(imMask, mouthPos);
+
+% Replace for normalization-function
 normIm = 123;
 
 end
