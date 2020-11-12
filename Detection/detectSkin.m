@@ -26,6 +26,8 @@ skinMask = imbinarize(imFilt, T);
 
 % Setting the optional argument to 'union' will return a single blob rather
 % than the multiple blobs from 'objects'
-skinMask = bwconvhull(skinMask, 'objects');
+% skinMask = bwconvhull(skinMask, 'objects');
+SE = strel('disk', 30);
+skinMask = imclose(skinMask, SE);
 end
 
