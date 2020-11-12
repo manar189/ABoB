@@ -18,7 +18,7 @@ figure, imshow(im);
 mouthPos(:) = ginput(1);
 
 % Detects eyes and returns their positions
-[lEye, rEye] = detectEyes(imMask, mouthPos);
+[lEye, rEye] = detectEyes(imMask, mouthPos)
 
 % Replace for normalization-function
 normIm = 123;

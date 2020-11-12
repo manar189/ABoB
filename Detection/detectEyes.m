@@ -37,7 +37,7 @@ for i = 0:length(u)
 end
 %************************************************************
 
-% figure, imshow(im + (L == 1) + (L == 2));
+% figure, imshow(im + (L == 1) + (L == 2)); % UNCOMMENT THIS TO SEE RESULT
 
 % Creates the resulting eye-positions from label properties
 P = regionprops(L,'Centroid');
