@@ -1,8 +1,7 @@
 function [mouthMask] = detectMouth(inImage)
 % DETECTMOUTH en funktoin för att upptäcka ansikten
 % Detailed explanation goes here
-inImage2 = im2double(inImage);
-YCbCrImg = rgb2ycbcr(inImage2);
+YCbCrImg = rgb2ycbcr(inImage);
 
 Cb = YCbCrImg(:,:,2);
 Cr = YCbCrImg(:,:,3);
@@ -18,23 +17,19 @@ nItalic = 0.95*(n*sum(CrSq))/(n*sum(CrDivCb));
 Difference = (CrSq - nItalic*CrDivCb).^2;
 
 MouthMap = CrSq .* Difference;
-
-% %find the max value in the image
-% [x, y] = find(ismember(MouthMap, max(MouthMap(:))));
-% MouthMap(x, y) = 1.0;
-% SE = strel('disk', 5);
-% MouthMap = imdilate(MouthMap, SE);
-
-%stretching the image
-minIm = min(MouthMap(:));
-maxIm = max(MouthMap(:));
-MouthMap = (MouthMap-minIm)/(maxIm-minIm);
-
-%MouthMap = MouthMap >= 0.8;
-
-%outImage = inImage2 + MouthMap;
-
 mouthMask = MouthMap;
+
+%find the max value in the image
+[x, y] = find(ismember(MouthMap, max(MouthMap(:))));
+MouthMap(x, y) = 1.0;
+SE = strel('disk', 5);
+MouthMap = imdilate(MouthMap, SE);
+
+MouthMap = MouthMap == 1.0;
+
+outImage = inImage + MouthMap;
+
+%mouthMask = outImage;
 
 end
 

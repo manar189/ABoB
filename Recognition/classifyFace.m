@@ -1,7 +1,7 @@
-function [outputArg1,outputArg2] = classifyFace(inputArg1,inputArg2)
-%classifyFace Summary of this function goes here
+function [faceId] = classifyFace(normIm)
+%CLASSIFYFACE Takes a normalized image of a face and returns its id.
 %   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+
+faceId = 123;
 end
 
