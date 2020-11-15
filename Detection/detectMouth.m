@@ -32,7 +32,7 @@ MouthMap = (MouthMap-minIm)/(maxIm-minIm);
 
 %MouthMap = MouthMap >= 0.8;
 
-outImage = inImage2 + MouthMap;
+%outImage = inImage2 + MouthMap;
 
 mouthMask = MouthMap;
 
