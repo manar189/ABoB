@@ -2,7 +2,8 @@ function [imSkin, skinMask] = detectSkin(im, P)
 %DETECTSKIN Calculate the probability of each pixel in im being skin by using the PDF given in P which models skin color.
 %Returns both the probability image and a binarized mask image.
 
-imDims = size(im, [1 2]);
+[n, m,~] = size(im);
+imDims = [n, m];
 imYCBCR = im2double(rgb2ycbcr(im));
 imSkin = zeros(imDims);
 
