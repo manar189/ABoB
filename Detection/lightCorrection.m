@@ -10,7 +10,7 @@ thresh_idx = ceil(N * size(lums, 2));
 lum_thresh = lums(thresh_idx);
 
 % Find the gray values of the white patch
-mask = imYCBCR(:,:,1) > lum_thresh;
+mask = imYCBCR(:,:,1) >= lum_thresh;
 r = im(:,:,1);
 g = im(:,:,2);
 b = im(:,:,3);
