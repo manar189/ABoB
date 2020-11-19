@@ -2,7 +2,9 @@ function outimg = normalizeFace(Leye,Reye,image)
 %Normaliserar ansiktet till en 271x221 bild genom att först rotera ögeonen
 %till x-axeln och sedan translateras vänsterögat till bildens center
 %förskutet med -50 och -25.
+image = rgb2gray(image);
 [row , col,~] = size(image);
+
 blackImage = zeros(row,col);
 blackImage(round(Leye(2)),round(Leye(1))) = 1;
 %blackImage(round(Reye(2)),round(Reye(1))) = 1;
