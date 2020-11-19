@@ -1,7 +1,7 @@
 function mouthPos = detectMouth(inImage)
-%DETECTMOUTH en funktoin f?r att uppt?cka ansikten
-% Will take in an image and then mask it in the sense that it should find
-% the point in the middle of the mouth
+%DETECTMOUTH Takes an image of a face and returns the position of the mouth.
+%
+%    Detailed explanation goes here
 
 % convert image -> double -> YCbCr color space
 yCbCrImg = rgb2ycbcr(im2double(inImage));
@@ -33,15 +33,12 @@ mouthMap = (mouthMap-minIm)/(maxIm-minIm);
 mouthPos = findMouthMid(mouthMap);
 
 % UNCOMMENT TO SEE RESULT
-if mouthPos(1) ~= -1
-    k = zeros(size(cb));
-    k(mouthPos(2), mouthPos(1)) = 1;
-    SE = strel('disk', 10);
-    k = imdilate(k, SE);
-    figure, imshow(inImage + k);
-else
-    fprintf('No mouth detected');
-end
+% if mouthPos(1) ~= -1
+%     figure, imshow(inImage);
+%     viscircles(mouthPos, 12);
+% else
+%     fprintf('No mouth detected');
+% end
 
 end
 

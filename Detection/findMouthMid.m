@@ -1,6 +1,7 @@
 function mouthPos = findMouthMid(mouthMap)
-%FINDMOUTHTMID Summary of this function goes here
-%   will return the position of the middle of the mouth using the mouthMap
+%FINDMOUTHTMID Takes an mouth map and returns the position of the mouth.
+%   
+%   Detailed explanation goes here
 
 SE = strel('disk', 10);
 for i = 0.5:0.001:0.99

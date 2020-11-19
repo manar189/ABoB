@@ -15,6 +15,8 @@ addpath(genpath(fileparts('Pictures/')));
 
 % Detection
 normIm = detectFace(im);
+figure, imshow(normIm);
+
 % Classification
 faceId = classifyFace(normIm);
 
