@@ -6,7 +6,7 @@ function map = houghEyeMap(im, mouthPos)
 [n, m, ~] = size(im);
 nResult = 4;       % How many centroids should be found before loop breaks
 % i increases sensitivity so more circles are detected
-for i = 0.6:0.01:0.95
+for i = 0.6:0.01:0.96
     [circles, ~] = imfindcircles(im2gray(im), [6 18], ...
     'ObjectPolarity', 'dark', ...   % dark or bright, dark means dark cirlce on bright background
     'Method', 'PhaseCode', ...      % PhaseCode or TwoStage

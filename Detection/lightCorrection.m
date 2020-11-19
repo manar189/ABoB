@@ -11,12 +11,24 @@ lum_thresh = lums(thresh_idx);
 
 % Find the gray values of the white patch
 mask = imYCBCR(:,:,1) > lum_thresh;
+figure, imshow(mask);
+
 r = im(:,:,1);
 g = im(:,:,2);
 b = im(:,:,3);
+
+% Frans kod, kanske fel???
 rx = max(r(mask));
 gx = max(g(mask));
 bx = max(b(mask));
+
+% Måns kod, I don't know what I'm doing...
+% rx = im2double(r).*mask;
+% gx = im2double(g).*mask;
+% bx = im2double(b).*mask;
+% rx = max(rx(:))
+% gx = max(rx(:))
+% bx = max(rx(:))
 
 % Gain factors for R and B channels
 alpha = gx / rx;
@@ -24,8 +36,8 @@ beta = gx / bx;
 
 % Transform the original RGB image
 % Note that this method could still use some work
-out(:,:,1) = im(:,:,1) .* alpha;
+out(:,:,1) = im(:,:,1) * alpha;
 out(:,:,2) = im(:,:,2);
-out(:,:,3) = im(:,:,3) .* beta;
+out(:,:,3) = im(:,:,3) * beta;
 end
 
