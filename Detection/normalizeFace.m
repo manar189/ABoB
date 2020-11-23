@@ -4,8 +4,8 @@ function outIm = normalizeFace(lEye,rEye,im)
 %   
 %   Detailed explanation goes here
 
-targetSize = [440 300];     % Size of output image
-targetEyeDistance = 150;    % Scales the image so eyes are this far apart
+targetSize = [400 300];     % Size of output image
+targetEyeDistance = 170;    % Scales the image so eyes are this far apart
 im = rgb2gray(im2double(im));
 [m,n] = size(im);
 
@@ -42,7 +42,7 @@ lEye = round(M1*[lEye 1]')';
 
 % Translates face to center of image. Last y-translation (-eyeDist/4) is
 % how much the eyes should be over the center of the image
-im = imtranslate(im, [-lEye(1)+n/2-eyeDist/2 -lEye(2)+m/2-eyeDist/4]);
+im = imtranslate(im, [-lEye(1)+n/2-eyeDist/2 -lEye(2)+m/2-eyeDist/2]);
 % figure, imshow(im);
 
 % Scales image so face is same size on all images
