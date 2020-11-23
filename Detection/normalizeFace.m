@@ -4,17 +4,19 @@ function outIm = normalizeFace(lEye,rEye,im)
 %   
 %   Detailed explanation goes here
 
-if (lEye == -1) | (rEye == -1)
-    % We could make it so that if we can't find eyes, it normalizes around
-    % the centroid of the masked face image.
-    outIm = im2gray(im);
-    return
-end
-
 targetSize = [440 300];     % Size of output image
 targetEyeDistance = 150;    % Scales the image so eyes are this far apart
 im = rgb2gray(im2double(im));
 [m,n] = size(im);
+
+if lEye == -1 | rEye == -1
+    % We could make it so that if we can't find eyes, it normalizes around
+    % the centroid of the masked face image.
+
+    % Sets eye coordinates to random points close to middle of image
+    lEye = [m/2-50 n/2-50];
+    rEye = [m/2+50 n/2-50];
+end
 
 eyeDist = pdist([lEye(1) lEye(2); rEye(1) lEye(2)], 'cityblock');
 angle = rad2deg(atan2(rEye(2)-lEye(2),rEye(1)-lEye(1)));
@@ -38,7 +40,8 @@ M1 = T1*R*T2;
 lEye = round(M1*[lEye 1]')';
 % rEye = round(M1*[rEye 1]')';
 
-% Translates face to center of image
+% Translates face to center of image. Last y-translation (-eyeDist/4) is
+% how much the eyes should be over the center of the image
 im = imtranslate(im, [-lEye(1)+n/2-eyeDist/2 -lEye(2)+m/2-eyeDist/4]);
 % figure, imshow(im);
 
@@ -48,7 +51,13 @@ im = imresize(im,scale);
 % figure, imshow(im);
 
 % Crops image to target size
-crop = centerCropWindow2d(size(im),targetSize);
-outIm = imcrop(im, crop);
+[m,n] = size(im);
+if m < targetSize(1) || n < targetSize(2)
+    fprintf('Target crop size is larger than image size in normalizeFace.m');
+    outIm = -1;
+else
+    crop = centerCropWindow2d([m n],targetSize);
+    outIm = imcrop(im, crop);
+end
 
 end
