@@ -8,14 +8,14 @@ if exist('../faceSpace.mat','file') && exist('../meanFace.mat','file')
     return
 end
 
-load(fullfile('Projekt/', 'faceSpace.mat'));
-load(fullfile('Projekt/', 'meanFace.mat'));
-load(fullfile('Projekt/', 'weights.mat'));
+load(fullfile('faceSpace.mat'));
+load(fullfile('meanFace.mat'));
+load(fullfile('weights.mat'));
 
 [m,n] = size(normIm);
 normIm = reshape(normIm, m*n, 1);
 
 difference = normIm - meanFace;
-projW = normU(:,10:16)'*difference;
+projW = normU(:,4:14)'*difference;
 
-[dist, faceId] = min(vecnorm(W(:,10:16) - projW))
+[dist, faceId] = min(vecnorm(W(4:14,:) - projW))

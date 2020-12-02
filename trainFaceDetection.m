@@ -23,8 +23,9 @@ figure, imshow(reshape(meanFace, m, n));
 
 A = faceMat - meanFace;
 L = A'*A;
-[V, ~] = eig(L);
-U = A*V;
+[V, D] = eig(L);
+Vsort = sortEigenvalues(V, D);
+U = A*Vsort;
 
 normU = zeros(size(U));
 for i=1:length(images)
