@@ -5,7 +5,5 @@ function [sortedEigVec] = sortEigenvalues(unsortedEigVec, unsortedEigVal)
 [~, ind] = sort(unsortedEigVal);
 sortedEigVec = unsortedEigVec(:, ind);
 
-
-
 end
 
