@@ -52,12 +52,7 @@ im = imresize(im,scale);
 
 % Crops image to target size
 [m,n] = size(im);
-if m < targetSize(1) || n < targetSize(2)
-    fprintf('Target crop size is larger than image size in normalizeFace.m');
-    outIm = -1;
-else
-    crop = centerCropWindow2d([m n],targetSize);
-    outIm = imcrop(im, crop);
-end
+crop = centerCropWindow2d([m n],targetSize);
+outIm = imcrop(im, crop);
 
 end

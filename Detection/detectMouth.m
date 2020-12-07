@@ -1,7 +1,9 @@
-function mouthPos = detectMouth(inImage)
+function mouthPos = detectMouth(inImage, skinMask)
 %DETECTMOUTH Takes an image of a face and returns the position of the mouth.
 %
 %    Detailed explanation goes here
+
+inImage = im2double(inImage).*skinMask;
 
 % convert image -> double -> YCbCr color space
 yCbCrImg = rgb2ycbcr(im2double(inImage));

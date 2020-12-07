@@ -19,16 +19,15 @@ imCorr = lightCorrection(im, 0.02);
 % detectSkin-function
 SE = strel('disk', 100);
 skinMask = imopen(skinMask, SE);
-imMask = im2double(im).*skinMask;
 
 % figure, imshow(skinMask);
 
 % Detects mouth in image and returns its position
-mouthPos = detectMouth(imMask);
+mouthPos = detectMouth(im, skinMask);
 
 % Detects eyes in image, takes mouth position as argument
 % and returns the eyes positions
-[lEye, rEye] = detectEyes(imMask, mouthPos);
+[lEye, rEye] = detectEyes(im, mouthPos, skinMask);
 
 % Replace for normalization-function
 normIm = normalizeFace(lEye, rEye, im);

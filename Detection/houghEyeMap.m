@@ -1,4 +1,4 @@
-function map = houghEyeMap(im, mouthPos)
+function [map, circles] = houghEyeMap(im, mouthPos)
 %HOUGHCIRCLEMAP Takes an image of a face and returns the image with likely eye
 %placements by hough circular transform.
 %   Detailed explanation goes here
@@ -14,7 +14,7 @@ for i = 0.6:0.01:0.96
 
     % Deletes results under the mouth so they aren't countet towards the
     % result
-    if(~isempty(circles))
+    if(~isempty(circles) && mouthPos(2) ~= -1)
         circles(circles(:,2) > mouthPos(2),:) = [];
     end
     
@@ -25,7 +25,7 @@ end
 
 map = createEyeMap(circles, mouthPos, n, m);
 
-% Visualize the result
+% % Visualize the result
 % figure, imshow(im);
 % rad = ones(size(circles,1),1) * 12;
 % viscircles(circles, rad);

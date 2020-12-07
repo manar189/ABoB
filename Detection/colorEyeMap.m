@@ -1,4 +1,4 @@
-function map = colorEyeMap(im, mouthPos)
+function [map, centroids] = colorEyeMap(im, mouthPos)
 %COLOREYEMAP Takes an image of a face and returns the image with likely eye
 %placements by color mapping.
 %   Detailed explanation goes here
@@ -50,7 +50,7 @@ for i = 100:-1:2
         % Loops through number of structures
         for j = 1:num
             % Checks if centroid is above mouth
-            if(P(j).Centroid(2) < mouthPos(2))
+            if(P(j).Centroid(2) < mouthPos(2) || mouthPos(2) == -1)
                 % Initialize forst structure
                 if(isempty(centroids))
                    centroids(1,:) = [P(j).Centroid(1) P(j).Centroid(2)];
@@ -81,7 +81,7 @@ end
 
 map = createEyeMap(centroids, mouthPos, n, m);
 
-% Visualize the result
+% % Visualize the result
 % figure, imshow(im);  
 % rad = ones(size(centroids,1),1) * 12;
 % viscircles(centroids, rad);

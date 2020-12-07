@@ -14,11 +14,18 @@ addpath(genpath(fileparts('Recognition/')));
 addpath(genpath(fileparts('Pictures/')));
 
 % Detection
+try
 normIm = detectFace(im);
-% figure, imshow(normIm);
+catch e
+   faceId = 0;
+   fprintf('Error: \n%s \n%s \nReturned faceId = 0', e.identifier, e.message);
+   return
+end
+figure, imshow(normIm);
 
 % Classification
 faceId = classifyFace(normIm);
+
 
 end
 
